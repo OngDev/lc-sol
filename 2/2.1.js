@@ -30,22 +30,25 @@ function verifyListNode(listNode, output) {
 // Solution
 var addTwoNumbers = function (l1, l2) {
   const result = new ListNode(0);
-  let currentResultNode = result;
-  let carry = 0;
+  let iterator = result;
+  let sum = 0;
 
-  while (l1 || l2 || carry > 0) {
-    const currentL1Val = l1 ? l1.val : 0;
-    const currentL2Val = l2 ? l2.val : 0
+  while (l1 || l2 || sum > 0) {
+    if (l1) {
+      sum += l1.val;
+      l1 = l1.next;
+    }
 
-    const sum = currentL1Val + currentL2Val + carry;
-    currentResultNode.next = new ListNode(sum % 10);
-    currentResultNode = currentResultNode.next;
+    if (l2) {
+      sum += l2.val;
+      l2 = l2.next;
+    }
 
-    // Prepare for the next loop
-    carry = Math.floor(sum / 10);
-    l1 = l1 ? l1.next : null;
-    l2 = l2 ? l2.next : null;
+    iterator.next = new ListNode(sum % 10);
+    iterator = iterator.next;
+    sum = sum > 9 ? 1 : 0;
   }
+
   return result.next;
 };
 
