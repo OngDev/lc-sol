@@ -1,4 +1,4 @@
-public class App {
+public class Sol711 {
     public static void main(String[] args) throws Exception {
         System.out.println(reverse(123));
         System.out.println(reverse(1000000003));
